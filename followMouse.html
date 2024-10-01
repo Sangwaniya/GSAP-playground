@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Follow the mouse</title>
+</head>
+
+<body>
+    <div class="circle" style="width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border-width: 3px;
+        border-color: blueviolet;
+        border-style: solid;
+        position: absolute; /* Allow it to move freely */
+        pointer-events: none; /* Prevent interference with mouse events */">
+        <div class="pinter" style="width: 10px;
+        height: 10px;
+        background-color: rgb(4, 31, 111);
+        border-radius: 50%;
+        position: absolute; /* Position it within the circle */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset to center */">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script>
+        const circle = document.querySelector('.circle');
+        const pinter = document.querySelector('.pinter');
+
+        window.addEventListener("mousemove", function (e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Move the pointer directly to mouse position
+            gsap.to(pinter, {
+                x: mouseX - 5, // Center the pointer
+                y: mouseY - 5,
+                ease: "power3",
+                duration: 0.1 // Quick response for the pointer
+            });
+
+            // Move the circle at a slower pace
+            gsap.to(circle, {
+                x: mouseX - 50, // Center the circle
+                y: mouseY - 50,
+                ease: "power3",
+                duration: 1 // Slower duration for the circle
+            });
+        });
+    </script>
+</body>
+
+</html>
