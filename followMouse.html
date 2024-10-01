@@ -7,47 +7,41 @@
 </head>
 
 <body>
-    <div class="circle" style="width: 100px;
-        height: 100px;
+    <div class="circle" style="width: 50px;
+        height: 50px;
         border-radius: 50%;
         border-width: 3px;
         border-color: blueviolet;
         border-style: solid;
-        position: absolute; /* Allow it to move freely */
+        position: fixed;
         pointer-events: none; /* Prevent interference with mouse events */">
-        <div class="pinter" style="width: 10px;
+    </div>
+    <div class="pointer" style="width: 10px;
         height: 10px;
         background-color: rgb(4, 31, 111);
         border-radius: 50%;
-        position: absolute; /* Position it within the circle */
-        top: 50%; /* Center vertically */
-        left: 50%; /* Center horizontally */
+        position: fixed; 
+        pointer-events: none; /* Prevent interference with mouse events */
         transform: translate(-50%, -50%); /* Offset to center */">
-        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script>
         const circle = document.querySelector('.circle');
-        const pinter = document.querySelector('.pinter');
+        const pointer = document.querySelector('.pointer');
 
         window.addEventListener("mousemove", function (e) {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            // Move the pointer directly to mouse position
-            gsap.to(pinter, {
-                x: mouseX - 5, // Center the pointer
-                y: mouseY - 5,
+            gsap.to(pointer, {
+                x: e.clientX - 7, // Center the pointer
+                y: e.clientY - 7,
                 ease: "power3",
-                duration: 0.1 // Quick response for the pointer
+                duration: 0.5 // Quick response for the pointer
             });
 
-            // Move the circle at a slower pace
             gsap.to(circle, {
-                x: mouseX - 50, // Center the circle
-                y: mouseY - 50,
+                x: e.clientX - 35, // Center the circle
+                y: e.clientY - 35,
                 ease: "power3",
-                duration: 1 // Slower duration for the circle
+                duration: 1.5 // Slower duration for the circle
             });
         });
     </script>
